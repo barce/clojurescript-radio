@@ -35,6 +35,9 @@
 ;; Validation
 ;;------------------------------------------------------------------------------
 
-; (defn- valid-state? [s])
-
+; (defn- valid-state? ])
+(defn- valid-state? [s]
+  (and (map? s)
+       (valid-volume? (:volume s))
+       (valid-band? (:band s))))
 ; (set-validator! *app-state valid-state?)

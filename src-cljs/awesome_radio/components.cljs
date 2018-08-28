@@ -57,8 +57,10 @@
 
 
 (defn- click-volume-down-btn
-  "Turn it down you kids!"
-  [_js-evt])
+ "Turn it down you kids!"
+  [_js-evt]
+  (let [new-volume (- _js-evt 1)]
+    (swap! *app-state assoc :volume new-volume)))
   ;; TODO: write me
 
 
@@ -85,8 +87,8 @@
       [:div
         ;; TOOD: maybe we want buttons instead?
         ; [:button {:on-click click-volume-up-btn} "▲"]
-        ; [:button {:on-click click-volume-down-btn} "▼"]
-        [:input {:max max-volume
+       [:button {:on-click (partial click-volume-down-btn volume)}"▼"]
+       [:input {:max max-volume
                  :min min-volume
                  :on-change change-volume
                  :type "range"
