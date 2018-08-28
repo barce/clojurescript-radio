@@ -55,12 +55,15 @@
   [_js-evt])
   ;; TODO: write me
 
+(defn- pos-volume
+  [num]
+  (if (pos? num) num 0))
 
 (defn- click-volume-down-btn
  "Turn it down you kids!"
-  [_js-evt]
-  (let [new-volume (- _js-evt 1)]
-    (swap! *app-state assoc :volume new-volume)))
+  [js-evt]
+  (let [new-volume (- js-evt 1)]
+    (swap! *app-state assoc :volume (pos-volume new-volume))))
   ;; TODO: write me
 
 
