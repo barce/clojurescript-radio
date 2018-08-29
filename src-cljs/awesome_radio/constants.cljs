@@ -2,7 +2,7 @@
   "Just some constants.")
 
 (def min-volume 0)
-(def max-volume 10)
+(def max-volume 11)
 
 (def min-am-frequency 540)
 (def max-am-frequency 1600)
