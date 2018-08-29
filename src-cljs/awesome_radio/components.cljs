@@ -4,6 +4,7 @@
     [awesome-radio.components.state-explorer :as state-explorer]
     [awesome-radio.state :refer [*app-state]]
     [awesome-radio.util :as util]
+    [awesome-radio.validation :as validation]
     [rum.core :as rum]))
 
 ;;------------------------------------------------------------------------------
@@ -52,18 +53,21 @@
 
 (defn- click-volume-up-btn
   "Turn it up my man!"
-  [_js-evt])
+  [current-volume _js-evt]
+  (let [new-volume (+ current-volume 1)]
+    (when (validation/valid-volume? new-volume)
+        (swap! *app-state assoc :volume new-volume))))
   ;; TODO: write me
 
-(defn- pos-volume
+(defn- pos-volume?
   [num]
   (if (pos? num) num 0))
 
 (defn- click-volume-down-btn
  "Turn it down you kids!"
-  [current_volume _js-evt]
-  (let [new-volume (- current_volume 1)]
-    (swap! *app-state assoc :volume (pos-volume new-volume))))
+  [current-volume _js-evt]
+  (let [new-volume (- current-volume 1)]
+    (swap! *app-state assoc :volume (pos-volume? new-volume))))
   ;; TODO: write me
 
 
@@ -89,7 +93,7 @@
       [:label "Volume:"]
       [:div
         ;; TOOD: maybe we want buttons instead?
-        ; [:button {:on-click click-volume-up-btn} "▲"]
+       [:button {:on-click (partial click-volume-up-btn volume)} "▲"]
        [:button {:on-click (partial click-volume-down-btn volume)}"▼"]
        [:input {:max max-volume
                  :min min-volume
