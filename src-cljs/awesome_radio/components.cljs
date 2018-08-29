@@ -61,8 +61,8 @@
 
 (defn- click-volume-down-btn
  "Turn it down you kids!"
-  [js-evt]
-  (let [new-volume (- js-evt 1)]
+  [current_volume _js-evt]
+  (let [new-volume (- current_volume 1)]
     (swap! *app-state assoc :volume (pos-volume new-volume))))
   ;; TODO: write me
 
