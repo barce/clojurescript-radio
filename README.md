@@ -1,7 +1,7 @@
 # ClojureScript Radio
 
 Implementation of a radio using ClojureScript + React. Initially used for a talk
-given to [houston.js in May 2017].
+given by Chris Oakman for [houston.js in May 2017].
 
 [houston.js in May 2017]:https://www.meetup.com/houston-js/events/239147082/
 

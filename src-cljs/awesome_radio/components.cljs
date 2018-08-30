@@ -54,7 +54,7 @@
 (defn- click-volume-up-btn
   "Turn it up my man!"
   [current-volume _js-evt]
-  (let [new-volume (+ current-volume 1)]
+  (let [new-volume (inc current-volume)]
     (when (validation/valid-volume? new-volume)
         (swap! *app-state assoc :volume new-volume))))
   ;; TODO: write me
